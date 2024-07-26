@@ -1,7 +1,9 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-
+import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
+import { createOrder } from "../../services/apiRestaurant";
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -33,6 +35,9 @@ const fakeCart = [
 ];
 
 function CreateOrder() {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+  const formErrors = useActionData();
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
 
@@ -40,7 +45,7 @@ function CreateOrder() {
     <div>
       <h2>Ready to order? Let's go!</h2>
 
-      <form>
+      <Form method="POST">
         <div>
           <label>First Name</label>
           <input type="text" name="customer" required />
@@ -51,6 +56,7 @@ function CreateOrder() {
           <div>
             <input type="tel" name="phone" required />
           </div>
+          {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
 
         <div>
@@ -72,11 +78,29 @@ function CreateOrder() {
         </div>
 
         <div>
-          <button>Order now</button>
+          <input type="hidden" name="cart" value={JSON.stringify(cart)}></input>
+          <button disabled={isSubmitting}>
+            {isSubmitting ? "packingOrder" : " Order now"}
+          </button>
         </div>
-      </form>
+      </Form>
     </div>
   );
 }
-
+export async function action({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  const order = {
+    ...data,
+    cart: JSON.parse(data.cart),
+    priority: data.priority === "on",
+  };
+  const errors = {};
+  if (!isValidPhone(order.phone))
+    errors.phone =
+      "please give us your phone number we might need it to contact you.";
+  if (Object.keys(errors).length > 0) return errors;
+  const newOrder = await createOrder(order);
+  return redirect(`/order/${newOrder.id}`);
+}
 export default CreateOrder;

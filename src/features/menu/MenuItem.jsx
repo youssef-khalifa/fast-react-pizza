@@ -1,3 +1,8 @@
+/* eslint-disable no-unused-vars */
+
+import { formatCurrency } from "../../utils/helpers";
+
+/* eslint-disable react/prop-types */
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
 
