@@ -1,0 +1,8 @@
+// import { tailwindcssPlugin } from 'prettier-plugin-tailwindcss';
+
+// const config = {
+//   plugins: [tailwindcssPlugin],
+//   singleQuote: true,
+// };
+
+// export default config;
