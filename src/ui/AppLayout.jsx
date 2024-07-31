@@ -11,11 +11,11 @@ function AppLayout() {
       {isLoading && <Loader />}
 
       <Header />
-      <di className="overflow-scroll">
+      <div className="overflow-scroll">
         <main className="max-w-3xl mx-auto">
           <Outlet />
         </main>
-      </di>
+      </div>
       <CartOverview />
     </div>
   );
