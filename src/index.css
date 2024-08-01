@@ -22,7 +22,9 @@
     background-size: 20% 50%;
     animation: loading 1s infinite linear;
   }
-
+  *::-webkit-scrollbar {
+    display: none; /* Hide scrollbars for Webkit browsers */
+  }
   @keyframes loading {
     20% {
       background-position:

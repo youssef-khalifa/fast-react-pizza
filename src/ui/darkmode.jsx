@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import Button from './Button'
 function Darkmode() {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -16,12 +16,13 @@ function Darkmode() {
   };
 
   return (
-    <button
+    <Button
+    className="ml-4 px-2 py-1 border rounded bg-gray-200 dark:bg-gray-800 dark:text-white"
       onClick={toggleDarkMode}
-      className="ml-4 px-2 py-1 border rounded bg-gray-200 dark:bg-gray-800 dark:text-white"
+      type='darkandlightmode'
     >
-      {darkMode ? "☀" : "🌑"}
-    </button>
+      {darkMode ? "🌞" : "🌑"}
+    </Button>
   );
 }
 

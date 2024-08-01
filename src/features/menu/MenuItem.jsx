@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { useDispatch, useSelector } from 'react-redux';
-import Button from '../../ui/Button';
-import DeleteItem from '../cart/DeleteItem';
-import UpdateItemQuantity from '../cart/UpdateItemQuantity';
-import { formatCurrency } from '../../utils/helpers';
-import { addItem, getCurrentQuantityById } from '../cart/cartSlice';
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../../ui/Button";
+import DeleteItem from "../cart/DeleteItem";
+import UpdateItemQuantity from "../cart/UpdateItemQuantity";
+import { formatCurrency } from "../../utils/helpers";
+import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
 
 /* eslint-disable react/prop-types */
 function MenuItem({ pizza }) {
@@ -34,14 +34,14 @@ function MenuItem({ pizza }) {
       />
       <div className="flex flex-col grow pt-0.5">
         <p className="font-medium">{name}</p>
-        <p className="text-sm italic text-stone-500 capitalize">
+        <p className="text-sm italic text-stone-500 dark:text-stone-200 capitalize">
           {ingredients.join(", ")}
         </p>
         <div className="mt-auto flex items-center justify-between">
           {!soldOut ? (
             <p className="text-sm">{formatCurrency(unitPrice)}</p>
           ) : (
-            <p className="text-sm uppercase font-medium text-stone-500">
+            <p className="text-sm uppercase font-medium text-stone-500 dark:text-stone-200">
               Sold out
             </p>
           )}

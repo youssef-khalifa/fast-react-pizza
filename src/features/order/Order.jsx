@@ -54,13 +54,13 @@ function Order() {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 bg-stone-200 px-6 py-5">
+      <div className="flex flex-wrap items-center justify-between gap-2 bg-stone-200 dark:bg-stone-600 px-6 py-5">
         <p className="font-medium">
           {deliveryIn >= 0
             ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
             : 'Order should have arrived'}
         </p>
-        <p className="text-xs text-stone-500">
+        <p className="text-xs dark:text-stone-200 text-stone-500">
           (Estimated delivery: {formatDate(estimatedDelivery)})
         </p>
       </div>
@@ -79,12 +79,12 @@ function Order() {
         ))}
       </ul>
 
-      <div className="space-y-2 bg-stone-200 px-6 py-5">
-        <p className="text-sm font-medium text-stone-600">
+      <div className="space-y-2 dark:bg-stone-600 bg-stone-200 px-6 py-5">
+        <p className="text-sm font-medium dark:text-stone-200 text-stone-600">
           Price pizza: {formatCurrency(orderPrice)}
         </p>
         {priority && (
-          <p className="text-sm font-medium text-stone-600">
+          <p className="text-sm font-medium dark:text-stone-200 text-stone-600">
             Price priority: {formatCurrency(priorityPrice)}
           </p>
         )}
